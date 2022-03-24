@@ -16,7 +16,7 @@ public class Pay {
     @Column(name = "pay_id")
     private Long id;
 
-    @ManyToOne(fetch = LAZY) //단방향 연관관계
+    @OneToOne(fetch = LAZY) //단방향 연관관계
     @JoinColumn(name = "user_id")
     private User user;
 
