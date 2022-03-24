@@ -13,7 +13,7 @@ import static javax.persistence.FetchType.*;
 @Table(name = "trade_history")
 public class TradeHistory {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trade_history_id")
     private Long id;
 
@@ -25,7 +25,9 @@ public class TradeHistory {
     @JoinColumn(name = "posts_id")
     private Post post;
 
+    @Column(name = "trade_history_created_at")
     private LocalDateTime createdTime;
 
+    @Column(name = "trade_history_updated_at")
     private LocalDateTime updatedTime;
 }

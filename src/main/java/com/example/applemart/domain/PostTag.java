@@ -12,7 +12,7 @@ import static javax.persistence.FetchType.*;
 @Table(name = "posts_tag")
 public class PostTag {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "posts_tag_id")
     private Long id;
 

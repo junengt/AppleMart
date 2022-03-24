@@ -12,7 +12,7 @@ import static javax.persistence.FetchType.*;
 @Table(name = "town")
 public class Town {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "town_id")
     private Long id;
 

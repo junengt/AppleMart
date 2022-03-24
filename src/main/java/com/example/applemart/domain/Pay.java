@@ -12,7 +12,7 @@ import static javax.persistence.FetchType.*;
 @Table(name = "pay")
 public class Pay {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "pay_id")
     private Long id;
 
@@ -20,5 +20,6 @@ public class Pay {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "pay_account")
     private Long account;
 }

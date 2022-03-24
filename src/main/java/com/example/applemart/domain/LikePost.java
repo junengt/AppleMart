@@ -9,10 +9,11 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
-@Table(name = "like+posts")
+@Table(name = "like_posts")
 public class LikePost {
 
-    @Id @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "like_post_id")
     private Long id;
 
     @ManyToOne(fetch = LAZY) //단방향 연관관계 설계
