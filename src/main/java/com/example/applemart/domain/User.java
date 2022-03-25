@@ -22,6 +22,9 @@ public class User {
     @Column(name = "user_name", nullable = false )
     private String name;
 
+    @Column(name = "user_town", nullable = false)
+    private Long userTownCode;
+
     @Column(name = "user_photo_path")
     private String photo;
 

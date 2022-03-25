@@ -38,6 +38,9 @@ public class Post {
     @Column(name = "posts_status")
     private boolean status; //열거형으로 설계시 enum으로 수정 필요
 
+    @Column(name = "posts_town")
+    private Long postTownCode;
+
     @ManyToOne(fetch = LAZY) //양방향 연관관계로 설계함
     @JoinColumn(name = "user_id")
     private User user;
