@@ -1,5 +1,6 @@
 package com.example.applemart.domain;
 
+import com.example.applemart.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +9,8 @@ import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
-public class Notice {
+@Table(name = "notice")
+public class Notice extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notice_id")
@@ -20,9 +22,4 @@ public class Notice {
     @Column(name = "notice_content")
     private String content;
 
-    @Column(name = "notice_created_at")
-    private LocalDateTime createdTime;
-
-    @Column(name = "notice_updated_at")
-    private LocalDateTime updatedTime;
 }

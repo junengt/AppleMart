@@ -1,5 +1,6 @@
 package com.example.applemart.domain;
 
+import com.example.applemart.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import static javax.persistence.FetchType.*;
 @Entity
 @Getter @Setter
 @Table(name = "trade_history")
-public class TradeHistory {
+public class TradeHistory extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "trade_history_id")
@@ -25,9 +26,4 @@ public class TradeHistory {
     @JoinColumn(name = "posts_id")
     private Post post;
 
-    @Column(name = "trade_history_created_at")
-    private LocalDateTime createdTime;
-
-    @Column(name = "trade_history_updated_at")
-    private LocalDateTime updatedTime;
 }

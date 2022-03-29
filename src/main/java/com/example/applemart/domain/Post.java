@@ -1,5 +1,6 @@
 package com.example.applemart.domain;
 
+import com.example.applemart.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,7 +12,7 @@ import static javax.persistence.FetchType.*;
 @Entity
 @Table(name = "posts")
 @Getter @Setter
-public class Post {
+public class Post extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "posts_id")
@@ -25,12 +26,6 @@ public class Post {
 
     @Column(name = "posts_content")
     private String content;
-
-    @Column(name = "posts_created_at")
-    private LocalDateTime createdTime;
-
-    @Column(name = "posts_updated_at")
-    private LocalDateTime updatedTime;
 
     @Column(name = "posts_delete_yn")
     private boolean deleted;

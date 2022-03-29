@@ -1,5 +1,6 @@
 package com.example.applemart.domain;
 
+import com.example.applemart.common.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +11,8 @@ import java.util.List;
 
 @Entity
 @Getter @Setter
-public class User {
+@Table(name = "user")
+public class User extends BaseEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
@@ -27,12 +29,6 @@ public class User {
 
     @Column(name = "user_photo_path")
     private String photo;
-
-    @Column(name = "user_created_at", nullable = false)
-    private LocalDateTime createdTime;
-
-    @Column(name = "user_updated_at", nullable = false)
-    private LocalDateTime updatedTime;
 
     @Column(name = "user_deleted_yn")
     private boolean deleted = false;
