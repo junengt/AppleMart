@@ -13,13 +13,16 @@ import java.time.LocalDateTime;
 @EntityListeners(value = AuditingEntityListener.class)
 @Getter
 @MappedSuperclass
+/**
+ * H2 DB에는 Null로 들어감
+ */
 public class BaseEntity {
 
     @CreatedDate
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdTime;
 
     @LastModifiedDate
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at")
     private LocalDateTime updatedTime;
 }

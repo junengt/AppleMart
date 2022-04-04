@@ -16,7 +16,7 @@ public class PostsPhoto {
     @Column(name = "posts_photo_id")
     private Long id;
 
-    @Column(name = "posts_photo_id")
+    @Column(name = "posts_photo_path")
     private String photoPath;
 
     @ManyToOne(fetch = LAZY) //단방향 연관관계로 설계

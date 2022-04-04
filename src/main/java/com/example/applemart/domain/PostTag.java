@@ -17,7 +17,7 @@ public class PostTag {
     private Long id;
 
     @ManyToOne(fetch = LAZY) //단방향 연관관계로 설계
-    @JoinColumn(name = "post_id")
+    @JoinColumn(name = "posts_id")
     private Post post;
 
     @ManyToOne(fetch = LAZY) //단방향 연관관계로 설계

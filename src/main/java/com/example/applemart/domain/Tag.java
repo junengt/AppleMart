@@ -15,7 +15,7 @@ public class Tag {
     private Long id;
 
     @Column(name = "tag_name")
-    private String name; //열거형으로 태그 이름을 나열하려면 enum 클래스 구현해야함
+    private String name;
 
     @Column(name = "tag_seq")
     private int seq; //태그 정렬 순서로 시퀀스 값
