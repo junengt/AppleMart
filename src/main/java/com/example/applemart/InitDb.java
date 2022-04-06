@@ -24,6 +24,7 @@ public class InitDb {
     public void doInit() {
         initService.doInitUserAndPost1();
         initService.doInitAddTag();
+        initService.doInitUserAndPost2();
     }
 
     @Component
@@ -48,8 +49,7 @@ public class InitDb {
         public void doInitUserAndPost1() {
             User user = new User();
             user.setPhoneNumber("01022172425");
-            user.setName("june");
-            user.setPhoto("~~~");
+            user.setPhoto("애플사진");
             em.persist(user);
 
             Post post = new Post();
@@ -57,7 +57,20 @@ public class InitDb {
             post.setTitle("맥북 프로 팝니다");
             post.setPrice(5000000);
             post.setContent("500만원에 팝니다");
-            post.setStatus(true);
+            em.persist(post);
+        }
+
+        public void doInitUserAndPost2() {
+            User user = new User();
+            user.setPhoneNumber("01012345678");
+            user.setPhoto("애플사진");
+            em.persist(user);
+
+            Post post = new Post();
+            post.setUser(user);
+            post.setTitle("맥북 에어 팜다");
+            post.setPrice(1000000);
+            post.setContent("100만원에 팜다");
             em.persist(post);
         }
     }

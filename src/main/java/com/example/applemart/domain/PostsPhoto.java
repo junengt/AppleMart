@@ -23,4 +23,7 @@ public class PostsPhoto {
     @JoinColumn(name = "posts_id")
     private Post post;
 
+    public void setPost(Post post) {
+        this.post = post;
+    }
 }

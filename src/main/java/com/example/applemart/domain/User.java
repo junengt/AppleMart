@@ -18,11 +18,11 @@ public class User extends BaseEntity {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "user_phone_number", nullable = false)
+    @Column(name = "firebase_uid", nullable = false)
     private String phoneNumber;
 
-    @Column(name = "user_name", nullable = false )
-    private String name;
+//    @Column(name = "user_name", nullable = false )
+//    private String name;
 
 //    @Column(name = "user_town", nullable = false)
 //    private Long userTownCode;

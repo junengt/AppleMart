@@ -4,7 +4,6 @@ import com.example.applemart.domain.Post;
 import com.example.applemart.domain.PostTag;
 import com.example.applemart.domain.PostsPhoto;
 import com.example.applemart.domain.Tag;
-import com.example.applemart.repository.PostRepository;
 import com.example.applemart.service.PostService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,42 +23,42 @@ public class PostApiController {
 
     private final PostService postService;
 
-    @GetMapping("/api/v1/posts")
-    public List<Post> postsV1() {
-        return postService.findPosts();
+    @GetMapping("/posts") //등록된 전체 중고거래 글 조회 API
+    public Result getPost() {
+        return new Result(postService.findPosts());
     }
 
-    @GetMapping("/api/v2/posts") //등록된 전체 게시물 조회
-    public Result getPost() {
-        List<Post> posts = postService.findPosts();
-        List<PostListDto> all = posts.stream()
-                .map(p -> new PostListDto(p.getId(),p.getTitle()))
-                .collect(Collectors.toList());
-        return new Result(all);
+    @PostMapping("/posts")//중고거래 글 등록 API
+    public String savePost(
+                           @RequestPart(name = "file", required = false) List<MultipartFile> files) {
+        // 1. 게시물 등록
+//         Long postId = postService.postSave(new Post()~~ Builder)
+
+        // 2. 이미지 등록
+        postService.savePostImages(1L, files);
+
+        // ....
+//        return CreatePostResponse(1L);
+        return "Suc";
     }
-//    @PostMapping("/api/v1/posts")//게시물 등록 API
-//    public CreatePostResponse savePost(@RequestBody @Validated CreatePostDto dto) {
-//        Post post = new Post();
-//        PostsPhoto postsPhoto = new PostsPhoto();
-//        PostTag postTag = new PostTag();
-//        postsPhoto.setPhotoPath(dto.getPhotoPath());
-//        post.setTitle(dto.getTitle());
-//        post.setPrice(dto.getPrice());
-//        post.setContent(dto.getContent());
-//    }
-//상품DTO안에 포토DTO 만들기
-//    @Getter
-//    static class CreatePostDto {
-//        private List<PhotoPathDto> photoPath;
-//        private String title;
-//        private Long tag;
-//        private int price;
-//        private String content;
-//
-//        static class CreatePostsPhotoDto {
-//            private
-//        }
-//    }
+
+    @PostMapping("/postex")
+    public String saveP(@RequestBody PostService.RequestPostForm form) {
+        postService.postSave(1L, form);
+        return "good";
+    }
+
+
+    //상품DTO안에 포토DTO 만들기
+    @Getter
+    static class CreatePostDto {
+        private List<PhotoPathDto> photoPath;
+        private String title;
+        private Long tag;
+        private int price;
+        private String content;
+
+    }
 
     @Data
     @AllArgsConstructor
@@ -67,6 +67,14 @@ public class PostApiController {
     }
 
     @Data
+    static class CreatePostForm {
+        private List<PostsPhoto> postsPhotos;
+        private String title;
+        private List<Tag> tags;
+        private int price;
+        private String content;
+    }
+
     static class CreatePostResponse {
         private Long id;
     }
@@ -75,11 +83,4 @@ public class PostApiController {
     static class PhotoPathDto {
     }
 
-
-    @Data
-    @AllArgsConstructor
-    static class PostListDto {
-        private Long id;
-        private String title;
-    }
 }
