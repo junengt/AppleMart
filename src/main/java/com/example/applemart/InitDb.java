@@ -36,7 +36,7 @@ public class InitDb {
 
         public void doInitAddTag() {
             String[] tags  = {"AirPods Series","AirPdos Pro", "AirPods Max",
-                    "iPad Pro", "iPad Air", "Ipad mini", "Apple Watch Series",
+                    "iPad Pro", "iPad Air", "iPad mini", "Apple Watch Series",
                     "Apple Watch SE", "iPhone Series", "iPhone SE Series", "MacBook Air",
             "MacBook Pro", "iMac 24", "Display", "AirTag", "Mac mini", "Mac Studio", "Accessories"};
             for (String tagName : tags) {

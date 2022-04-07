@@ -32,14 +32,23 @@ public class PostApiController {
         }
     }
 
+    @PutMapping("posts/{id}")
+    public String deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
+        return "Suc";
+    }
+
     @PostMapping("/posts")//중고거래 글 등록 API
-    public String savePost(
+    public String savePost(//@RequestPart PostService.RequestPostForm form,
                            @RequestPart(name = "file", required = false) List<MultipartFile> files) {
         // 1. 게시물 등록
-//         Long postId = postService.postSave(new Post()~~ Builder)
+//        Long postId = postService.postSave(1l, form);
 
         // 2. 이미지 등록
-        postService.savePostImages(1L, files);
+        postService.savePostImages(1l, files);
+
+        // 3. 태그 등록
+//        postService.savePostTag(postId,);
 
         // ....
 //        return CreatePostResponse(1L);

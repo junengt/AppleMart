@@ -1,7 +1,9 @@
 package com.example.applemart.service;
 
+import com.example.applemart.api.PostApiController;
 import com.example.applemart.domain.*;
 import com.example.applemart.repository.PostRepository;
+import com.example.applemart.repository.PostTagRepository;
 import com.example.applemart.repository.PostsPhotoRepository;
 import com.example.applemart.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -26,9 +28,10 @@ import java.util.stream.Collectors;
 @Transactional
 public class PostService {
 
-    private final UserRepository userRepository;
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
     private final PostsPhotoRepository postsPhotoRepository;
+    private final PostTagRepository postTagRepository;
 
     @Transactional(readOnly = true)
     public List<PostListDto> findPosts() {
@@ -42,6 +45,11 @@ public class PostService {
         return postRepository.findPostsBySearch(searchKeyword).stream()
                 .map(p -> new PostListDto(p.getId(), p.getTitle(), p.getPrice(), p.getContent()))
                 .collect(Collectors.toList());
+    }
+
+    public void deletePost(Long postId) {
+        Post post = postRepository.findById(postId).get();
+        postRepository.updatePostDelete(post.getId());
     }
 
     static class PostsPhotoDto {
@@ -59,13 +67,14 @@ public class PostService {
         private String content;
     }
 
-    public void postSave(Long userId, RequestPostForm form) {
+    public Long postSave(Long userId, RequestPostForm form) {
         Optional<User> user = userRepository.findById(userId);
         Post post = new Post();
         post.setUser(user.get());
         post.setTitle(form.getTitle());
         post.setContent(form.getContent());
         postRepository.save(post);
+        return post.getId();
     }
 
     public void savePostImages(Long postId, List<MultipartFile> fileList) {
@@ -91,12 +100,17 @@ public class PostService {
         }
     }
 
+    public void savePostTag(Long postId) {
+
+        Post post = postRepository.findById(postId).get();
+    }
+
 
     @Data
     public class RequestPostForm {
 //        private List<PostsPhotoDto> postsPhotoDtos;
         private String title;
-//        private List<PostTag> postTags;
+        private List<PostTag> postTags;
         private int price;
         private String content;
     }
