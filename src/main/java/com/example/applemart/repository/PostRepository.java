@@ -12,7 +12,7 @@ import java.util.List;
 public interface PostRepository extends JpaRepository<Post, Long> {
 
     @Query("SELECT p FROM Post p WHERE p.title LIKE %:searchKeyword%")
-    List<Post> findByTitleContaining(String searchKeyword);
+    List<Post> findPostsBySearch(String searchKeyword);
 
 }
 

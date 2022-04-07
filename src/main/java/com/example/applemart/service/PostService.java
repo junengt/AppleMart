@@ -37,6 +37,13 @@ public class PostService {
                 .collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public List<PostListDto> findPostsBySearchKeyword(String searchKeyword) {
+        return postRepository.findPostsBySearch(searchKeyword).stream()
+                .map(p -> new PostListDto(p.getId(), p.getTitle(), p.getPrice(), p.getContent()))
+                .collect(Collectors.toList());
+    }
+
     static class PostsPhotoDto {
         private String photoPath;
         private MultipartFile image;

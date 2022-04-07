@@ -4,6 +4,7 @@ import com.example.applemart.domain.Post;
 import com.example.applemart.domain.PostTag;
 import com.example.applemart.domain.PostsPhoto;
 import com.example.applemart.domain.Tag;
+import com.example.applemart.repository.PostRepository;
 import com.example.applemart.service.PostService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,8 +25,11 @@ public class PostApiController {
     private final PostService postService;
 
     @GetMapping("/posts") //등록된 전체 중고거래 글 조회 API
-    public Result getPost() {
-        return new Result(postService.findPosts());
+    public Result getPost(String searchKeyword) {
+        if (searchKeyword == null) return new Result(postService.findPosts());
+        else {
+            return new Result(postService.findPostsBySearchKeyword(searchKeyword));
+        }
     }
 
     @PostMapping("/posts")//중고거래 글 등록 API

@@ -22,8 +22,4 @@ public class PostsPhoto {
     @ManyToOne(fetch = LAZY) //단방향 연관관계로 설계
     @JoinColumn(name = "posts_id")
     private Post post;
-
-    public void setPost(Post post) {
-        this.post = post;
-    }
 }
