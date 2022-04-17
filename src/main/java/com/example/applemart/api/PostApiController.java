@@ -12,6 +12,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class PostApiController {
         }
     }
 
-    @PutMapping("posts/{id}")
+    @DeleteMapping("posts/{id}")
     public String deletePost(@PathVariable Long id) {
         postService.deletePost(id);
         return "Suc";

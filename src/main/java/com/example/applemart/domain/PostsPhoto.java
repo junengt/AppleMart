@@ -1,5 +1,6 @@
 package com.example.applemart.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter @Setter
+@Builder
 @Table(name = "posts_photo")
 public class PostsPhoto {
 
